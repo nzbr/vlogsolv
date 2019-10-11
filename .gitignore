@@ -1,0 +1,5 @@
+vlogsolv
+*.elf
+*.o
+*.tmp.c
+fns.txt
