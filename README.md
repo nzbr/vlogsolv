@@ -12,17 +12,24 @@ To get an optimized build (translated to C, then built) you can use `v -prod .`
 
 ## Usage
 
-`./vlogsolv <expression>`  
+`./vlogsolv <expression>`
 
 The following operators are available
 
-- `!` Not `!<exp>`
-- `&` And `<exp> & <exp>`
-- `|` Or `<exp> | <exp>`
+- `!` Not
+	- `!<exp>`
+- `&` And
+	- `<exp> & <exp>`
+- `|` Or
+	- `<exp> | <exp>`
+- `=` Equivalence
+	- `<exp> = <exp>`
+- `>` Implication
+	- `<expr> > <expr>`
 - `T` True
 - `F` False
 
-All other symbols are interpreted as variables  
+All other symbols are interpreted as variables
 You may need to escape some of the symbols depending on your shell. Spaces are ignored
 
 ## Example
