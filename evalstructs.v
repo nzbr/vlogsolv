@@ -45,9 +45,7 @@ fn eval_xor(e Expression, vars map[string]bool) bool {
 	evala := expa.eval
 	expb  := e.exps[1]
 	evalb := expb.eval
-	va := evala(expa, vars)
-	vb := evalb(expb, vars)
-	return (va || vb) && !(va && vb)
+	return evala(expa, vars) != evalb(expb, vars)
 }
 
 fn eval_not(e Expression, vars map[string]bool) bool {
