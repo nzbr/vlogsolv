@@ -17,19 +17,16 @@ To get an optimized build (translated to C, then built) you can use `v -prod .`
 The following operators are available
 
 - `!` Not
-	- `!<exp>`
 - `&` And
-	- `<exp> & <exp>`
 - `|` Or
-	- `<exp> | <exp>`
 - `=` Equivalence
-	- `<exp> = <exp>`
+	- `(a & b) | (!a & !b)`
 - `>` Implication
-	- `<exp> > <exp>`
+	- `!a | (a & b)`
 - `<` Converse Implication
-	- `<exp> < <exp>`
+	- `b > a`
 - `^` Exclusive Or
-	- `<exp> ^ <exp>`
+	- `(a | b) & !(a & b)`
 - `T` True
 - `F` False
 
