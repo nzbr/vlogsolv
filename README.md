@@ -25,9 +25,9 @@ The following operators are available
 - `=` Equivalence
 	- `<exp> = <exp>`
 - `>` Implication
-	- `<expr> > <expr>`
+	- `<exp> > <exp>`
 - `^` Exclusive Or
-	- `<expr> ^ <expr>`
+	- `<exp> ^ <exp>`
 - `T` True
 - `F` False
 
