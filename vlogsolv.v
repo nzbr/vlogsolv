@@ -65,7 +65,7 @@ fn get_atoms(exp string) []string {
 	mut result := []string
 
 	for _, c in exp {
-		if !(c in [`&`,`|`,`!`,`=`,`>`,`^`,`(`,`)`,`T`,`F`]) && !(c.str() in result) {
+		if !(c in [`&`,`|`,`!`,`=`,`>`,`<`, `^`,`(`,`)`,`T`,`F`]) && !(c.str() in result) {
 			result << c.str()
 		}
 	}
@@ -78,7 +78,7 @@ fn to_prefix(exp string) string {
 	mut revout := []byte
 	for i := exp.len - 1; i >= 0; i-- {
 		chr := exp[i]
-		if chr in [`&`,`|`,`=`,`>`,`^`,`)`] { // Push operators to stack (except !)
+		if chr in [`&`,`|`,`=`,`>`,`<`, `^`,`)`] { // Push operators to stack (except !)
 			opstack << chr
 			continue
 		} else if chr == `(` { // Pop stack until closing brace
@@ -108,7 +108,7 @@ fn to_prefix(exp string) string {
 
 fn format_input(exp string) string{
 	mut result := exp
-	for sym in ['&', '|', '=', '>', '^'] {
+	for sym in ['&', '|', '=', '>', '<', '^'] {
 		result = result.replace(sym, ' $sym ')
 	}
 	return result

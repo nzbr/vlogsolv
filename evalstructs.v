@@ -32,6 +32,16 @@ fn eval_impl(e Expression, vars map[string]bool) bool {
 	return (!va) || (va && vb)
 }
 
+fn eval_coimpl(e Expression, vars map[string]bool) bool {
+	expa  := e.exps[0]
+	evala := expa.eval
+	expb  := e.exps[1]
+	evalb := expb.eval
+	va := evala(expa, vars)
+	vb := evalb(expb, vars)
+	return (!vb) || (va && vb)
+}
+
 fn eval_eq(e Expression, vars map[string]bool) bool {
 	expa  := e.exps[0]
 	evala := expa.eval

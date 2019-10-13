@@ -26,6 +26,8 @@ The following operators are available
 	- `<exp> = <exp>`
 - `>` Implication
 	- `<exp> > <exp>`
+- `<` Converse Implication
+	- `<exp> < <exp>`
 - `^` Exclusive Or
 	- `<exp> ^ <exp>`
 - `T` True

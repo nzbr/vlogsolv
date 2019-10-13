@@ -39,6 +39,13 @@ fn evaluate_expression(expr string) Expression {
 				symstack = symstack.slice(0, symstack.len - 2)
 				symstack << Expression { exps: [expa, expb], eval: eval_impl }
 			}
+			`<` => {
+				if symstack.len < 2 { panic('Malformed expression at $i -> ${c.str()}') }
+				expa := symstack[symstack.len - 1]
+				expb := symstack[symstack.len - 2]
+				symstack = symstack.slice(0, symstack.len - 2)
+				symstack << Expression { exps: [expa, expb], eval: eval_coimpl }
+			}
 			`^` => {
 				if symstack.len < 2 { panic('Malformed expression at $i -> ${c.str()}') }
 				expa := symstack[symstack.len - 1]
