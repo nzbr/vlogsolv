@@ -1,4 +1,5 @@
 vlogsolv
+vlogsolv.exe
 *.elf
 *.o
 *.tmp.c
