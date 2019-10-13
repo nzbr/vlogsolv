@@ -59,6 +59,10 @@ fn main() {
 		row += ' ${function(expression, assignment).str()} '
 		println(row)
 	}
+	if valuesets.len == 0 {	//If there are no atoms, just calculate the expressions value
+		assignment := map[string]bool
+		println(' ${function(expression, assignment).str()} ')
+	}
 }
 
 fn get_atoms(exp string) []string {

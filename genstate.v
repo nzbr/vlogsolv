@@ -7,6 +7,8 @@ struct BoolArr {
 }
 
 fn gen_state_arrs(pos, length int) []BoolArr {
+	if length == 0 { return []BoolArr }
+	
 	max := length - 1
 	if pos == max {
 		mut arr := []BoolArr
