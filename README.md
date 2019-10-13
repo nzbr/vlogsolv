@@ -1,6 +1,6 @@
 # vlogsolv
 
-vlogsolv is a small command line program that calculates value tables for simple logical expressions.
+vlogsolv is a small command line program that calculates value tables for logical expressions.
 It is written completely in [V](https://github.com/vlang/v)
 
 ## Building
