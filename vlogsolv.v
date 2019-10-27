@@ -74,6 +74,7 @@ fn get_atoms(exp string) []string {
 		}
 	}
 
+	quicksort(mut result, 0, (result.len - 1))
 	return result
 }
 
