@@ -3,10 +3,10 @@ module main
 import os
 
 fn main() {
-	mut expr := ""
+	mut expr := ''
 	for i, s in os.args {
 		if i == 0 { continue } // Skip executable name
-		mut trim := ""
+		mut trim := ''
 		for _, c in s { if c != ` ` { trim += c.str() } }
 		expr += trim
 	}
@@ -34,7 +34,7 @@ fn main() {
 	println(row)
 
 	lastrow := row
-	row = ""
+	row = ''
 	for _, c in lastrow {
 		if c == `|` {
 			row += '+'
