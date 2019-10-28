@@ -43,11 +43,11 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: vlogsolv
-          path: dynamic
+          path: vlogsolv
       - name: Zip
         run: |
           set -e
-          zip -r vlogsolv.zip dynamic/.
+          zip -r vlogsolv.zip vlogsolv
       - name: Upload
         uses: softprops/action-gh-release@v1
         with:
