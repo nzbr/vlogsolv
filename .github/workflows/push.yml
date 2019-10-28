@@ -22,3 +22,4 @@ jobs:
       with:
         name: vlogsolv
         path: vlogsolv
+        args: "-o vlogsolv" 
