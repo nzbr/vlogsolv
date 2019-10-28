@@ -34,7 +34,7 @@ All other symbols are interpreted as variables
 You may need to escape some of the symbols depending on your shell. Spaces are ignored
 
 ## Example
-`./vlogsolv (a | !b) & c`
+`./vlogsolv '(a | !b) & c'`
 
 ```
 Input:	(a | !b) & c
