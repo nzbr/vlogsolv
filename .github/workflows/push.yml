@@ -16,10 +16,11 @@ jobs:
 
     - name: Build
       uses: nzbr/vlang-action@v1
+      with:
+        args: -o vlogsolv 
 
     - name: Upload artifacts
       uses: actions/upload-artifact@master
       with:
         name: vlogsolv
         path: vlogsolv
-        args: -o vlogsolv
