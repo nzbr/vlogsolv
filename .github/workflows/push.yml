@@ -19,8 +19,14 @@ jobs:
       with:
         args: -o vlogsolv 
 
+    - name: Prepare artifact upload
+      run: |
+        set -e
+        mkdir build
+        cp -r vlogsolv LICENSE README.md build/
+
     - name: Upload artifacts
       uses: actions/upload-artifact@master
       with:
         name: vlogsolv
-        path: vlogsolv
+        path: build

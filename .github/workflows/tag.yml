@@ -1,0 +1,56 @@
+name: Release
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  dynamic:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v1
+
+    - name: Build
+      uses: nzbr/vlang-action@v1
+      with:
+        args: -o vlogsolv 
+
+    - name: Prepare artifact upload
+      run: |
+        set -e
+        mkdir build
+        cp -r vlogsolv LICENSE README.md build/
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: vlogsolv
+        path: build
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [dynamic]
+    steps:
+      - name: Install Dependencies
+        run: |
+          set -e
+          sudo apt-get update && sudo apt-get install -y zip
+      - name: Download Dynamic
+        uses: actions/download-artifact@master
+        with:
+          name: vlogsolv
+          path: dynamic
+      - name: Zip
+        run: |
+          set -e
+          zip -r vlogsolv.zip dynamic/.
+      - name: Upload
+        uses: softprops/action-gh-release@v1
+        with:
+          files: vlogsolv.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
