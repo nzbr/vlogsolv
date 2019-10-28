@@ -1,0 +1,25 @@
+name: Push
+on: 
+  push:
+    branches:
+      - '**'
+  pull_request:
+
+jobs:
+  dynamic:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v1
+
+    - name: Build
+      uses: nzbr/vlang-action@v1
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: vlogsolv
+        path: vlogsolv
+        args: "-o vlogsolv" 
