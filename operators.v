@@ -36,7 +36,7 @@ fn (e Expression) eval(vars map[string]bool) bool {
 }
 
 fn panic_unknown_element() bool {
-	panic("Unknown enum element. This should never happen")
+	panic('Unknown enum element. This should never happen')
 }
 
 fn (e Expression) eval_and(vars map[string]bool) bool {
