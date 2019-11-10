@@ -7,7 +7,7 @@
 </p>
 
 vlogsolv is a small command line program that calculates value tables for logical expressions.
-It is written completely in [V](https://github.com/vlang/v)
+It is completely written in [V](https://github.com/vlang/v)
 
 ## Building
 
