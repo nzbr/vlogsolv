@@ -10,57 +10,57 @@ fn evaluate_expression(expr string) Expression {
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
 				symstack = symstack.slice(0, symstack.len - 2)
-				symstack << Expression { exps: [expa, expb], eval: eval_and }
+				symstack << Expression { exps: [expa, expb], operator: .op_and }
 			}
 			`|` {
 				if symstack.len < 2 { panic('Malformed expression at $i -> ${c.str()}') }
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
 				symstack = symstack.slice(0, symstack.len - 2)
-				symstack << Expression { exps: [expa, expb], eval: eval_or }
+				symstack << Expression { exps: [expa, expb], operator: .op_or }
 			}
 			`!` {
 				if symstack.len < 1 { panic('Malformed expression at $i -> ${c.str()}') }
 				exp := symstack[symstack.len - 1]
 				symstack = symstack.slice(0, symstack.len - 1)
-				symstack << Expression { exps: [exp], eval: eval_not }
+				symstack << Expression { exps: [exp], operator: .op_not }
 			}
 			`=` {
 				if symstack.len < 2 { panic('Malformed expression at $i -> ${c.str()}') }
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
 				symstack = symstack.slice(0, symstack.len - 2)
-				symstack << Expression { exps: [expa, expb], eval: eval_eq }
+				symstack << Expression { exps: [expa, expb], operator: .op_eq }
 			}
 			`>` {
 				if symstack.len < 2 { panic('Malformed expression at $i -> ${c.str()}') }
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
 				symstack = symstack.slice(0, symstack.len - 2)
-				symstack << Expression { exps: [expa, expb], eval: eval_impl }
+				symstack << Expression { exps: [expa, expb], operator: .op_impl }
 			}
 			`<` {
 				if symstack.len < 2 { panic('Malformed expression at $i -> ${c.str()}') }
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
 				symstack = symstack.slice(0, symstack.len - 2)
-				symstack << Expression { exps: [expa, expb], eval: eval_coimpl }
+				symstack << Expression { exps: [expa, expb], operator: .op_coimpl }
 			}
 			`^` {
 				if symstack.len < 2 { panic('Malformed expression at $i -> ${c.str()}') }
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
 				symstack = symstack.slice(0, symstack.len - 2)
-				symstack << Expression { exps: [expa, expb], eval: eval_xor }
+				symstack << Expression { exps: [expa, expb], operator: .op_xor }
 			}
 			`T` {
-				symstack << Expression { eval: eval_true }
+				symstack << Expression { operator: .op_top }
 			}
 			`F` {
-				symstack << Expression { eval: eval_false }
+				symstack << Expression { operator: .op_bottom }
 			}
 			else {
-				symstack << Expression { name: c.str(), eval: eval_atom }
+				symstack << Expression { name: c.str(), operator: .op_atom }
 			}
 		}
 	}

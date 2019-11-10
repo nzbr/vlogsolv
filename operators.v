@@ -1,78 +1,98 @@
 module main
 
+enum Operator {
+	op_and
+	op_or
+	op_impl
+	op_coimpl
+	op_eq
+	op_xor
+	op_not
+	op_atom
+	op_top
+	op_bottom
+}
+
 struct Expression {
-	exps      []Expression
-	name string
-	eval      fn(Expression, map[string]bool) bool
+	exps     []Expression
+	name     string
+	operator Operator
 }
 
-fn eval_and(e Expression, vars map[string]bool) bool {
-	expa  := e.exps[0]
-	evala := expa.eval
-	expb  := e.exps[1]
-	evalb := expb.eval
-	return evala(expa, vars) && evalb(expb, vars)
+fn (e Expression) eval(vars map[string]bool) bool {
+	return match e.operator {
+		.op_and    { e.eval_and(vars) }
+		.op_atom   { e.eval_atom(vars) }
+		.op_bottom { e.eval_bottom(vars) }
+		.op_coimpl { e.eval_coimpl(vars) }
+		.op_eq     { e.eval_eq(vars) }
+		.op_impl   { e.eval_impl(vars) }
+		.op_not    { e.eval_not(vars) }
+		.op_or     { e.eval_or(vars) }
+		.op_top    { e.eval_top(vars) }
+		.op_xor    { e.eval_xor(vars) }
+		else       { panic_unknown_element() }
+	}
 }
 
-fn eval_or(e Expression, vars map[string]bool) bool {
-	expa  := e.exps[0]
-	evala := expa.eval
-	expb  := e.exps[1]
-	evalb := expb.eval
-	return evala(expa, vars) || evalb(expb, vars)
+fn panic_unknown_element() bool {
+	panic("Unknown enum element. This should never happen")
 }
 
-fn eval_impl(e Expression, vars map[string]bool) bool {
-	expa  := e.exps[0]
-	evala := expa.eval
-	expb  := e.exps[1]
-	evalb := expb.eval
-	va := evala(expa, vars)
-	vb := evalb(expb, vars)
+fn (e Expression) eval_and(vars map[string]bool) bool {
+	a  := e.exps[0]
+	b  := e.exps[1]
+	return a.eval(vars) && b.eval(vars)
+}
+
+fn (e Expression) eval_or(vars map[string]bool) bool {
+	a  := e.exps[0]
+	b  := e.exps[1]
+	return a.eval(vars) || b.eval(vars)
+}
+
+fn (e Expression) eval_impl(vars map[string]bool) bool {
+	a  := e.exps[0]
+	b  := e.exps[1]
+	va := a.eval(vars)
+	vb := b.eval(vars)
 	return (!va) || (va && vb)
 }
 
-fn eval_coimpl(e Expression, vars map[string]bool) bool {
-	expa  := e.exps[0]
-	evala := expa.eval
-	expb  := e.exps[1]
-	evalb := expb.eval
-	va := evala(expa, vars)
-	vb := evalb(expb, vars)
+fn (e Expression) eval_coimpl(vars map[string]bool) bool {
+	a  := e.exps[0]
+	b  := e.exps[1]
+	va := a.eval(vars)
+	vb := b.eval(vars)
 	return (!vb) || (va && vb)
 }
 
-fn eval_eq(e Expression, vars map[string]bool) bool {
-	expa  := e.exps[0]
-	evala := expa.eval
-	expb  := e.exps[1]
-	evalb := expb.eval
-	return evala(expa, vars) == evalb(expb, vars)
+fn (e Expression) eval_eq(vars map[string]bool) bool {
+	a  := e.exps[0]
+	b  := e.exps[1]
+	return a.eval(vars) == b.eval(vars)
 }
 
-fn eval_xor(e Expression, vars map[string]bool) bool {
-	expa  := e.exps[0]
-	evala := expa.eval
-	expb  := e.exps[1]
-	evalb := expb.eval
-	return evala(expa, vars) != evalb(expb, vars)
+fn (e Expression) eval_xor(vars map[string]bool) bool {
+	a  := e.exps[0]
+	b  := e.exps[1]
+	return a.eval(vars) != b.eval(vars)
 }
 
-fn eval_not(e Expression, vars map[string]bool) bool {
+fn (e Expression) eval_not(vars map[string]bool) bool {
 	exp  := e.exps[0]
-	eval := exp.eval
-	return ! eval(exp, vars)
+	return ! exp.eval(vars)
 }
 
-fn eval_atom(e Expression, vars map[string]bool) bool {
+fn (e Expression) eval_atom(vars map[string]bool) bool {
 	return vars[e.name]
 }
 
-fn eval_true(e Expression, vars map[string]bool) bool {
+fn (e Expression) eval_top(vars map[string]bool) bool {
 	return true
 }
 
-fn eval_false(e Expression, vars map[string]bool) bool {
+fn (e Expression) eval_bottom(vars map[string]bool) bool {
 	return false
 }
 

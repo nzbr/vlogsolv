@@ -21,7 +21,6 @@ fn main() {
 
 	valuesets := gen_state_arrs(0,atoms.len)
 	expression := evaluate_expression(expr)
-	function := expression.eval
 
 	//Draw table
 	mut row     := ''
@@ -56,12 +55,12 @@ fn main() {
 				row += ' 0 |'
 			}
 		}
-		row += ' ${function(expression, assignment).str()} '
+		row += ' ${expression.eval(assignment).str()} '
 		println(row)
 	}
 	if valuesets.len == 0 {	//If there are no atoms, just calculate the expressions value
 		assignment := map[string]bool
-		println(' ${function(expression, assignment).str()} ')
+		println(' ${expression.eval(assignment).str()} ')
 	}
 }
 
