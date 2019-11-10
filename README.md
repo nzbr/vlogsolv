@@ -1,4 +1,10 @@
-# vlogsolv
+# <div align=center>vlogsolv</div>
+
+<p align=center>
+	<img alt="GitHub" src="https://img.shields.io/github/license/nzbr/vlogsolv">
+	<a href="https://actions-badge.atrox.dev/nzbr/vlogsolv/goto"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnzbr%2Fvlogsolv%2Fbadge&style=flat" /></a>
+	<a href="https://aur.archlinux.org/packages/vlogsolv/"><img alt="AUR version" src="https://img.shields.io/aur/version/vlogsolv"></a>
+</p>
 
 vlogsolv is a small command line program that calculates value tables for logical expressions.
 It is written completely in [V](https://github.com/vlang/v)
