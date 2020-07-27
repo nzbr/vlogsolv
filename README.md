@@ -20,13 +20,13 @@ The following operators are available
 - `&` And
 - `|` Or
 - `=` Equivalence
-	- `(a & b) | (!a & !b)`
+  - `(a & b) | (!a & !b)`
 - `>` Implication
-	- `!a | (a & b)`
+  - `!a | b`
 - `<` Converse Implication
-	- `b > a`
+  - `b > a`
 - `^` Exclusive Or
-	- `(a | b) & !(a & b)`
+  - `(a | b) & !(a & b)`
 - `T` True
 - `F` False
 
@@ -34,12 +34,13 @@ All other symbols are interpreted as variables
 You may need to escape some of the symbols depending on your shell. Spaces are ignored
 
 ## Example
+
 `./vlogsolv '(a | !b) & c'`
 
-```
-Input:	(a | !b) & c
-Prefix:	&|a!bc
-Atoms:	["a", "b", "c"]
+```none
+Input: (a | !b) & c
+Prefix: &|a!bc
+Atoms: ["a", "b", "c"]
 
  a | b | c | value
 ---+---+---+-------
