@@ -25,7 +25,7 @@ jobs:
         cp -r vlogsolv LICENSE README.md build/
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@main
       with:
         name: vlogsolv
         path: build
