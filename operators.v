@@ -55,7 +55,7 @@ fn (e Expression) eval_impl(vars map[string]bool) bool {
 fn (e Expression) eval_coimpl(vars map[string]bool) bool {
 	a := e.exps[0]
 	b := e.exps[1]
-	return (!a.eval(vars)) || b.eval(vars)
+	return (!b.eval(vars)) || a.eval(vars)
 }
 
 fn (e Expression) eval_eq(vars map[string]bool) bool {
