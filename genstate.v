@@ -1,42 +1,25 @@
 module main
 
-// fn gen_states(vars []string) []map[string]bool {}
-struct BoolArr {
-	arr []bool
-}
-
-fn gen_state_arrs(pos, length int) []BoolArr {
+fn gen_state_arrs(pos, length int) [][]bool {
 	if length == 0 {
-		return []BoolArr{}
+		return [][]bool{ len: 0 }
 	}
 	max := length - 1
 	if pos == max {
-		mut arr := []BoolArr{}
-		arr << BoolArr{
-			arr: [true]
-		}
-		arr << BoolArr{
-			arr: [false]
-		}
+		mut arr := [][]bool{}
+		arr << [true]
+		arr << [false]
 		return arr
 	}
 	arrs := gen_state_arrs(pos + 1, length)
-	mut newarrs := []BoolArr{}
+	mut newarrs := [][]bool{}
 	for _, arr in arrs {
-		mut t := arr.arr.clone()
-		mut f := arr.arr.clone()
+		mut t := arr.clone()
+		mut f := arr.clone()
 		t << true
 		f << false
-		newarrs << BoolArr{
-			arr: t
-		}
-		newarrs << BoolArr{
-			arr: f
-		}
+		newarrs << t
+		newarrs << f
 	}
 	return newarrs
-}
-
-fn (b &BoolArr) str() string {
-	return b.arr.str()
 }

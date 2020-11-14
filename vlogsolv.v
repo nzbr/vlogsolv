@@ -25,6 +25,7 @@ fn main() {
 	println('')
 	valuesets := gen_state_arrs(0, atoms.len)
 	expression := evaluate_expression(expr)
+
 	// Draw table
 	mut row := ''
 	// Draw table header
@@ -43,10 +44,9 @@ fn main() {
 		}
 	}
 	println(row)
-	for _, valueset in valuesets {
+	for _, values in valuesets {
 		row = ''
 		mut assignment := map[string]bool{}
-		values := valueset.arr
 		for i, atom in atoms {
 			assignment[atom] = values[i]
 			if values[i] {
