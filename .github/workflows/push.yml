@@ -1,5 +1,5 @@
 name: Push
-on: 
+on:
   push:
     branches:
       - '**'
@@ -17,7 +17,7 @@ jobs:
     - name: Build
       uses: nzbr/vlang-action@v2
       with:
-        args: -o vlogsolv 
+        args: -o vlogsolv -prod -autofree -cc gcc
 
     - name: Prepare artifact upload
       run: |
