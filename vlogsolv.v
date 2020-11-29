@@ -67,7 +67,7 @@ fn main() {
 fn get_atoms(exp string) []string {
 	mut result := []string{}
 	for _, c in exp {
-		if !(c in [`&`, `|`, `!`, `=`, `>`, `<`, `^`, `(`, `)`, `T`, `F`]) && !(c.str() in result) {
+		if !(c in [`&`, `|`, `!`, `=`, `>`, `<`, `^`, `(`, `)`, `T`, `F`, `1`, `0`]) && !(c.str() in result) {
 			result << c.str()
 		}
 	}

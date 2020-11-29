@@ -93,8 +93,18 @@ fn evaluate_expression(expr string) Expression {
 					operator: .op_top
 				}
 			}
+			`1` {
+				symstack << Expression{
+					operator: .op_top
+				}
+			}
 			`F` {
 				symstack << Expression{
+					operator: .op_bottom
+				}
+			}
+			`0` {
+				symstack << Expression {
 					operator: .op_bottom
 				}
 			}
