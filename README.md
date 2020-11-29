@@ -33,8 +33,8 @@ The following operators are available
   - `b > a`
 - `^` Exclusive Or
   - `(a | b) & !(a & b)`
-- `T` True
-- `F` False
+- `1` or `T` True
+- `0` or `F` False
 
 All other symbols are interpreted as variables
 You may need to escape some of the symbols depending on your shell. Spaces are ignored
