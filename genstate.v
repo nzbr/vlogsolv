@@ -2,7 +2,7 @@ module main
 
 fn gen_state_arrs(pos, length int) [][]bool {
 	if length == 0 {
-		return [][]bool{ len: 0 }
+		return [][]bool{len: 0}
 	}
 	max := length - 1
 	if pos == max {

@@ -104,7 +104,7 @@ fn evaluate_expression(expr string) Expression {
 				}
 			}
 			`0` {
-				symstack << Expression {
+				symstack << Expression{
 					operator: .op_bottom
 				}
 			}
