@@ -1,13 +1,14 @@
 module main
 
-fn evaluate_expression(expr string) Expression {
+fn evaluate_expression(expr string) ?Expression {
 	mut symstack := []Expression{}
+	// TODO: There has to be _some_ way to add more meaningful error messages
 	for i := expr.len - 1; i >= 0; i-- {
 		c := expr[i]
 		match c {
 			`&` {
 				if symstack.len < 2 {
-					panic('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
@@ -19,7 +20,7 @@ fn evaluate_expression(expr string) Expression {
 			}
 			`|` {
 				if symstack.len < 2 {
-					panic('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
@@ -31,7 +32,7 @@ fn evaluate_expression(expr string) Expression {
 			}
 			`!` {
 				if symstack.len < 1 {
-					panic('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.str()')
 				}
 				exp := symstack[symstack.len - 1]
 				symstack = symstack.slice(0, symstack.len - 1)
@@ -42,7 +43,7 @@ fn evaluate_expression(expr string) Expression {
 			}
 			`=` {
 				if symstack.len < 2 {
-					panic('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
@@ -54,7 +55,7 @@ fn evaluate_expression(expr string) Expression {
 			}
 			`>` {
 				if symstack.len < 2 {
-					panic('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
@@ -66,7 +67,7 @@ fn evaluate_expression(expr string) Expression {
 			}
 			`<` {
 				if symstack.len < 2 {
-					panic('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
@@ -78,7 +79,7 @@ fn evaluate_expression(expr string) Expression {
 			}
 			`^` {
 				if symstack.len < 2 {
-					panic('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
@@ -117,10 +118,10 @@ fn evaluate_expression(expr string) Expression {
 		}
 	}
 	if symstack.len == 0 {
-		panic('Empty expression!')
+		return error('Empty expression!')
 	}
 	if symstack.len != 1 {
-		panic('Multiple expressions left!')
+		return error('Multiple expressions left!')
 	}
 	return symstack[0]
 }

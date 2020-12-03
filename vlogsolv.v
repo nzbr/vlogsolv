@@ -24,9 +24,9 @@ fn main() {
 	println('Atoms:\t$atoms')
 	println('')
 	valuesets := gen_state_arrs(0, atoms.len)
-	expression := evaluate_expression(expr)
-
-	// Draw table
+	expression := evaluate_expression(expr) or {
+		println(err)
+		exit(1)}
 	mut row := ''
 	// Draw table header
 	for atom in atoms {
