@@ -5,7 +5,7 @@ import os
 fn main() {
 	// TODO: Add proper argument parsing
 	enable_condense := true
-	verbose := true
+	// verbose := true
 	mut expr := ''
 	for i, s in os.args {
 		if i == 0 { // Skip executable name
