@@ -14,7 +14,7 @@ It is completely written in [V](https://github.com/vlang/v)
 1. Install V
 2. run `v .`
 
-To get an optimized build (translated to C, then built) you can use `v -prod .`
+To get an optimized build you can use `v -prod .`
 
 ## Usage
 
