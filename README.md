@@ -43,6 +43,8 @@ You may need to escape some of the symbols depending on your shell. Spaces are i
 
 `./vlogsolv '(a | !b) & c'`
 
+<!-- TODO: update example with condense enabled once the result is sorted properly -->
+
 ```none
 Input: (a | !b) & c
 Prefix: &|a!bc

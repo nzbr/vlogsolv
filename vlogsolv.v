@@ -19,6 +19,7 @@ fn main() {
 		}
 		expr += trim
 	}
+	// TODO: only show if set to verbose
 	input := format_input(expr)
 	println('Input:\t$input')
 	expr = to_prefix(expr)
@@ -55,6 +56,7 @@ fn main() {
 				}
 			}
 		}
+		// TODO: Sort when merging true/false back together
 		if enable_condense {
 			for _, alloc in condense(allocs_true) {
 				results << Result{

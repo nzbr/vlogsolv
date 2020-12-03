@@ -13,6 +13,7 @@ fn get_atoms(exp string) []string {
 }
 
 fn to_prefix(exp string) string {
+	// TODO: Fix segfault on invalid expressions (array index oob)
 	mut opstack := []byte{}
 	mut revout := []byte{}
 	for i := exp.len - 1; i >= 0; i-- {
