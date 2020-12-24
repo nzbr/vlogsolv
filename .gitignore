@@ -1,7 +1,7 @@
 .vscode/
 
 vlogsolv
-vlogsolv.exe
+*.exe
 *.elf
 *.o
 *.tmp.c

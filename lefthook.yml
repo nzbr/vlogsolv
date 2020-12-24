@@ -1,0 +1,8 @@
+pre-commit:
+  commands:
+    pretty:
+      glob: '*.v'
+      run: v fmt -w {staged_files} && git add {staged_files}
+    linter:
+      glob: '*.v'
+      run: v vet {staged_files}
