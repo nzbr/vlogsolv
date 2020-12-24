@@ -30,3 +30,11 @@ fn (self Allocation) str() string {
 		.al_any { '*' }
 	}
 }
+
+fn (self Allocation) to_int() int {
+	return match self {
+		.al_true { 2 }
+		.al_any { 1 }
+		.al_false { 0 }
+	}
+}

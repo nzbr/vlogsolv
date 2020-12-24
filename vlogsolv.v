@@ -56,20 +56,8 @@ fn main() {
 				}
 			}
 		}
-		// TODO: Sort when merging true/false back together
 		if enable_condense {
-			for _, alloc in condense(allocs_true) {
-				results << Result{
-					assignment: alloc
-					result: true
-				}
-			}
-			for _, alloc in condense(allocs_false) {
-				results << Result{
-					assignment: alloc
-					result: false
-				}
-			}
+			results = condense_and_merge(allocs_true, allocs_false)
 		}
 		print_table(atoms, results)
 	} else {
