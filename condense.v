@@ -1,6 +1,6 @@
 module main
 
-fn singlediff(a, b []Allocation) ?int {
+fn singlediff(a []Allocation, b []Allocation) ?int {
 	if a.len != b.len {
 		return error('len mismatch')
 	}
@@ -21,7 +21,7 @@ fn singlediff(a, b []Allocation) ?int {
 	return pos
 }
 
-fn equal(a, b []Allocation) bool {
+fn equal(a []Allocation, b []Allocation) bool {
 	if a.len != b.len {
 		return false
 	}
@@ -38,9 +38,7 @@ fn condense(arr [][]Allocation) [][]Allocation {
 	mut matched := [false].repeat(arr.len)
 	for i := 0; i < arr.len; i++ {
 		for j := i; j < arr.len; j++ {
-			pos := singlediff(arr[i], arr[j]) or {
-				continue
-			}
+			pos := singlediff(arr[i], arr[j]) or { continue }
 			mut newsol := arr[i].clone()
 			newsol[pos] = .al_any
 			matched[i] = true

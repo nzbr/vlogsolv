@@ -1,6 +1,6 @@
 module main
 
-fn partition(mut nums []string, low, high int) int {
+fn partition(mut nums []string, low int, high int) int {
 	pivot := nums[high]
 	mut i := low - 1
 	for j := low; j <= high - 1; j++ {
@@ -17,7 +17,7 @@ fn partition(mut nums []string, low, high int) int {
 	return i + 1
 }
 
-fn quicksort(mut nums []string, low, high int) {
+fn quicksort(mut nums []string, low int, high int) {
 	if low < high {
 		pi := partition(mut nums, low, high)
 		quicksort(mut nums, low, pi - 1)

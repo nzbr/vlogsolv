@@ -1,6 +1,6 @@
 module main
 
-fn gen_state_arrs(pos, length int) [][]bool {
+fn gen_state_arrs(pos int, length int) [][]bool {
 	if length == 0 {
 		return [][]bool{len: 0}
 	}
