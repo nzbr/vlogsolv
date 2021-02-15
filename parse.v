@@ -3,9 +3,9 @@ module main
 fn get_atoms(exp string) []string {
 	mut result := []string{}
 	for _, c in exp {
-		if !(c in [`&`, `|`, `!`, `=`, `>`, `<`, `^`, `(`, `)`, `T`, `F`, `1`, `0`]) && !(c.str() in
+		if !(c in [`&`, `|`, `!`, `=`, `>`, `<`, `^`, `(`, `)`, `T`, `F`, `1`, `0`]) && !(c.ascii_str() in
 			result) {
-			result << c.str()
+			result << c.ascii_str()
 		}
 	}
 	quicksort(mut result, 0, (result.len - 1))
@@ -25,7 +25,7 @@ fn to_prefix(exp string) string {
 			mut popchr := ` `
 			for popchr != `)` {
 				popchr = opstack[opstack.len - 1]
-				opstack = opstack.slice(0, opstack.len - 1)
+				opstack = opstack[0 .. opstack.len - 1]
 				if popchr != `)` {
 					revout << popchr
 				}
@@ -37,12 +37,12 @@ fn to_prefix(exp string) string {
 	// Empty stack
 	for opstack.len > 0 {
 		revout << opstack[opstack.len - 1]
-		opstack = opstack.slice(0, opstack.len - 1)
+		opstack = opstack[0 .. opstack.len - 1]
 	}
 	// Invert output
 	mut result := ''
 	for i := revout.len - 1; i >= 0; i-- {
-		result += revout[i].str()
+		result += revout[i].ascii_str()
 	}
 	return result
 }

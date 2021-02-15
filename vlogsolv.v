@@ -14,7 +14,7 @@ fn main() {
 		mut trim := ''
 		for _, c in s {
 			if c != ` ` {
-				trim += c.str()
+				trim += c.ascii_str()
 			}
 		}
 		expr += trim

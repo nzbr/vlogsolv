@@ -8,11 +8,11 @@ fn evaluate_expression(expr string) ?Expression {
 		match c {
 			`&` {
 				if symstack.len < 2 {
-					return error('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.ascii_str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
-				symstack = symstack.slice(0, symstack.len - 2)
+				symstack = symstack[0..symstack.len - 2]
 				symstack << Expression{
 					exps: [expa, expb]
 					operator: .op_and
@@ -20,11 +20,11 @@ fn evaluate_expression(expr string) ?Expression {
 			}
 			`|` {
 				if symstack.len < 2 {
-					return error('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.ascii_str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
-				symstack = symstack.slice(0, symstack.len - 2)
+				symstack = symstack[0..symstack.len - 2]
 				symstack << Expression{
 					exps: [expa, expb]
 					operator: .op_or
@@ -32,10 +32,10 @@ fn evaluate_expression(expr string) ?Expression {
 			}
 			`!` {
 				if symstack.len < 1 {
-					return error('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.ascii_str()')
 				}
 				exp := symstack[symstack.len - 1]
-				symstack = symstack.slice(0, symstack.len - 1)
+				symstack = symstack[0..symstack.len - 1]
 				symstack << Expression{
 					exps: [exp]
 					operator: .op_not
@@ -43,11 +43,11 @@ fn evaluate_expression(expr string) ?Expression {
 			}
 			`=` {
 				if symstack.len < 2 {
-					return error('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.ascii_str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
-				symstack = symstack.slice(0, symstack.len - 2)
+				symstack = symstack[0..symstack.len - 2]
 				symstack << Expression{
 					exps: [expa, expb]
 					operator: .op_eq
@@ -55,11 +55,11 @@ fn evaluate_expression(expr string) ?Expression {
 			}
 			`>` {
 				if symstack.len < 2 {
-					return error('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.ascii_str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
-				symstack = symstack.slice(0, symstack.len - 2)
+				symstack = symstack[0..symstack.len - 2]
 				symstack << Expression{
 					exps: [expa, expb]
 					operator: .op_impl
@@ -67,11 +67,11 @@ fn evaluate_expression(expr string) ?Expression {
 			}
 			`<` {
 				if symstack.len < 2 {
-					return error('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.ascii_str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
-				symstack = symstack.slice(0, symstack.len - 2)
+				symstack = symstack[0..symstack.len - 2]
 				symstack << Expression{
 					exps: [expa, expb]
 					operator: .op_coimpl
@@ -79,11 +79,11 @@ fn evaluate_expression(expr string) ?Expression {
 			}
 			`^` {
 				if symstack.len < 2 {
-					return error('Malformed expression at $i -> $c.str()')
+					return error('Malformed expression at $i -> $c.ascii_str()')
 				}
 				expa := symstack[symstack.len - 1]
 				expb := symstack[symstack.len - 2]
-				symstack = symstack.slice(0, symstack.len - 2)
+				symstack = symstack[0..symstack.len - 2]
 				symstack << Expression{
 					exps: [expa, expb]
 					operator: .op_xor
@@ -111,7 +111,7 @@ fn evaluate_expression(expr string) ?Expression {
 			}
 			else {
 				symstack << Expression{
-					name: c.str()
+					name: c.ascii_str()
 					operator: .op_atom
 				}
 			}
